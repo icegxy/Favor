@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/collection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/imageView_collection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cropToPadding="false"
+            android:paddingBottom="2dp"
+            android:paddingTop="6dp"
+            app:srcCompat="@drawable/collection" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/collections"
+            android:textSize="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/discover"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/imageView_discover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cropToPadding="false"
+            android:paddingBottom="2dp"
+            android:paddingTop="6dp"
+            app:srcCompat="@drawable/discover" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/discover"
+            android:textSize="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/follow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/imageView_follow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cropToPadding="false"
+            android:paddingBottom="2dp"
+            android:paddingTop="6dp"
+            app:srcCompat="@drawable/follow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/follow"
+            android:textSize="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/manager"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/imageView_manager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cropToPadding="false"
+            android:paddingBottom="2dp"
+            android:paddingTop="6dp"
+            app:srcCompat="@drawable/manager" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/manager"
+            android:textSize="10dp" />
+    </LinearLayout>
+</LinearLayout>
