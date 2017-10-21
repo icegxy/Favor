@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Favor-Java:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="FavorJava.war">
+      <element id="artifact" artifact-name="Favor-Java:war exploded" />
+    </root>
+  </artifact>
+</component>
