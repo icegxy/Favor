@@ -19,7 +19,12 @@
         </activity>
         <activity android:name=".activity.GuidePageActivity" android:theme="@style/FullScreen"/>
         <activity android:name=".activity.MainActivity"/>
-        <activity android:name=".activity.SignActiviy"/>
+        <activity
+            android:name=".activity.SigninActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.SignupActivity"
+            android:launchMode="singleInstance" />
     </application>
 
 </manifest>

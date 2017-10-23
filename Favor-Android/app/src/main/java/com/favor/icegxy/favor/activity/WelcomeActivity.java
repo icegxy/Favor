@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
 import com.favor.icegxy.favor.R;
 
 /**
- * Created by Icegx on 2017/10/14.
+ * Created by icegxy on 2017/10/14.
  */
 
 public class WelcomeActivity extends Activity implements Runnable {
@@ -19,27 +19,25 @@ public class WelcomeActivity extends Activity implements Runnable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         //启动一个延迟线程
-        new  Thread(this).start();
+        new Thread(this).start();
     }
 
     @Override
     public void run() {
-        try{
+        try {
             //延迟1秒时间
             Thread.sleep(2000);
-            SharedPreferences preferences= getSharedPreferences("count", 0); // 存在则打开它，否则创建新的Preferences
+            SharedPreferences preferences = getSharedPreferences("count", 0); // 存在则打开它，否则创建新的Preferences
             int count = preferences.getInt("count", 0); // 取出数据
 
-            /**
-             *如果用户不是第一次使用则直接调转到显示界面,否则调转到引导界面
-             */
+            //如果用户不是第一次使用则直接调转到显示界面,否则调转到引导界面
             if (count == 0) {
                 Intent intent1 = new Intent();
                 intent1.setClass(WelcomeActivity.this, GuidePageActivity.class);
                 startActivity(intent1);
             } else {
                 Intent intent2 = new Intent();
-                intent2.setClass(WelcomeActivity.this, SignActiviy.class);
+                intent2.setClass(WelcomeActivity.this, SigninActivity.class);
                 startActivity(intent2);
             }
             finish();
@@ -49,7 +47,7 @@ public class WelcomeActivity extends Activity implements Runnable {
             //存入数据
             editor.putInt("count", 1); // 存入数据
             //提交修改
-            editor.commit();
+            editor.apply();
         } catch (InterruptedException e) {
 
         }

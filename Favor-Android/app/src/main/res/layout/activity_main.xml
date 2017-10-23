@@ -10,8 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#009688">
+        android:layout_height="60dp">
 
         <TextView
             android:id="@+id/textView"
@@ -21,8 +20,8 @@
             android:paddingLeft="20dp"
             android:paddingTop="20dp"
             android:text="@string/collections"
-            android:textColor="#FFFFFF"
-            android:textSize="15dp"
+            android:textColor="#161616"
+            android:textSize="30dp"
             android:textStyle="bold" />
 
         <ImageView
@@ -40,11 +39,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/refresh_Layout"
-        app:overlay="false"
-        app:wave_show="true"
-        app:wave_color="#009688"
-        app:wave_height_type="normal"
-        android:layout_marginTop="50dp">
+        app:overlay="true"
+        app:wave_show="false"
+        app:progress_colors="@array/material_colors"
+        app:wave_height_type="higher"
+        app:progress_show_circle_backgroud="false"
+        android:layout_marginTop="60dp">
 
         <ListView
             android:id="@+id/collection_ListView"

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:gravity="center"
+        android:text="@string/signin"
+        android:textColor="#020202"
+        android:textSize="2sdp" />
+
+    <EditText
+        android:id="@+id/editText_username"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:ems="5"
+        android:inputType="textPersonName"
+        android:textCursorDrawable="@null"
+        android:theme="@style/MyEditText"
+        android:saveEnabled="true" />
+
+    <EditText
+        android:id="@+id/editText_password"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:ems="5"
+        android:inputType="textPassword"
+        android:textCursorDrawable="@null"
+        android:theme="@style/MyEditText" />
+
+    <Button
+        android:id="@+id/button_signin"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/border"
+        android:text="@string/signin"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/button_forgetPasswd"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="#00000000"
+        android:text="@string/forgetPassword"
+        android:textColor="#2e2b2b"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/button_signup"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="120dp"
+        android:background="#00000000"
+        android:text="@string/signupNow"
+        android:textColor="#2e2b2b"
+        android:textSize="12sp" />
+
+</LinearLayout>
