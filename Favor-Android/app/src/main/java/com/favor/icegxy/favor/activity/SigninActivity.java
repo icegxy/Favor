@@ -14,7 +14,7 @@ import com.favor.icegxy.favor.R;
 import com.favor.icegxy.favor.utils.Constant;
 
 /**
- * Created by Icegxy on 2017/10/18.
+ * Created by icegxy on 2017/10/18.
  */
 
 public class SigninActivity extends BaseActivity {
@@ -41,12 +41,12 @@ public class SigninActivity extends BaseActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 Intent intent = new Intent(SigninActivity.this, MainActivity.class);
                 if (usernameText.getText().toString().equals(null) || usernameText.getText().toString().equals("")) {
-                    Toast toast = Toast.makeText(getApplicationContext(), Constant.USERNAME_NECESSARY, Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getApplicationContext(), Constant.USERNAME_NECESSARY, Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                     return false;
                 } else if (passwordText.getText().toString().equals(null) || passwordText.getText().toString().equals("")) {
-                    Toast toast = Toast.makeText(getApplicationContext(), Constant.PASSWD_NECESSARY, Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getApplicationContext(), Constant.PASSWD_NECESSARY, Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                     return false;
@@ -68,5 +68,6 @@ public class SigninActivity extends BaseActivity {
             }
         });
     }
+
 
 }

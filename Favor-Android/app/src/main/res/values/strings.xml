@@ -12,4 +12,5 @@
     <string name="signinNow">已有Favor账号？去登录</string>
     <string name="password">密码</string>
     <string name="forgetPassword">忘记密码</string>
+    <string name="getVerfyCode">获取</string>
 </resources>
