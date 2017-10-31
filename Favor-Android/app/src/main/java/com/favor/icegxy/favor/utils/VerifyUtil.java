@@ -16,7 +16,7 @@ public class VerifyUtil {
      * @param phoneNumber 手机号码
      * @return 格式是否正确
      */
-    public boolean isPhoneFormat(String phoneNumber) {
+    public final boolean isPhoneFormat(String phoneNumber) {
         Pattern pattern = Pattern.compile("^(13[0-9]|14[57]|15[0-35-9]|17[6-8]|18[0-9])[0-9]{8}$");
         Matcher matcher = pattern.matcher(phoneNumber);
         return matcher.matches();

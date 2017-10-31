@@ -3,6 +3,8 @@ package com.favor.icegxy.favor.utils;
 import android.os.CountDownTimer;
 import android.widget.Button;
 
+import com.favor.icegxy.favor.constant.Constant;
+
 /**
  * Created by icegxy on 2017/10/25.
  */

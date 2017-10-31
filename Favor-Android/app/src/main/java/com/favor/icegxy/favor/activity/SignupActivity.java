@@ -1,25 +1,28 @@
 package com.favor.icegxy.favor.activity;
 
-import android.content.Intent;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.favor.icegxy.favor.R;
-import com.favor.icegxy.favor.utils.Constant;
+import com.favor.icegxy.favor.activity.base.BaseActivity;
+import com.favor.icegxy.favor.constant.Constant;
+import com.favor.icegxy.favor.presenter.SignupPresenter;
+import com.favor.icegxy.favor.utils.HintUtil;
 import com.favor.icegxy.favor.utils.VerifyCodeCountDownTimer;
 import com.favor.icegxy.favor.utils.VerifyUtil;
+import com.favor.icegxy.favor.view.SignupView;
 
 /**
  * Created by Icegxy on 2017/10/18.
  */
 
-public class SignupActivity extends BaseActivity {
+public class SignupActivity extends BaseActivity implements SignupView {
 
     private final VerifyUtil verifyUtil = new VerifyUtil();
     private EditText usernameText;
@@ -28,83 +31,109 @@ public class SignupActivity extends BaseActivity {
     private Button signupButton;
     private Button signinButton;
     private Button verificationCodeButton;
+    private SignupPresenter signupPresenter;
+    private ProgressDialog progressDialog;
+    private final HintUtil hintUtil = new HintUtil();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        signupPresenter = new SignupPresenter(this);
+        signupPresenter.attachView(this);
+    }
 
+    @Override
+    public void initViews() {
+        setContentView(R.layout.activity_signup);
         //为输入框设置提示语
         usernameText = (EditText) findViewById(R.id.editText_username);
-        setHint(Constant.SIGNUP_PROMPT, 15, usernameText);
         verificationCodeText = (EditText) findViewById(R.id.editText_verificationCode);
-        setHint(Constant.VERIFICATIONCODE_PROMPT, 15, verificationCodeText);
         passwordText = (EditText) findViewById(R.id.editText_password);
-        setHint(Constant.SIGNIN_PASSWD_PROMPT, 15, passwordText);
         signupButton = (Button) findViewById(R.id.button_signup);
-
-        signupButton.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-                if (usernameText.getText().toString().equals(null) || usernameText.getText().toString().equals("")) {
-                    Toast toast = Toast.makeText(getApplicationContext(), Constant.USERNAME_NECESSARY, Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                    return false;
-                } else if (passwordText.getText().toString().equals(null) || passwordText.getText().toString().equals("")) {
-                    Toast toast = Toast.makeText(getApplicationContext(), Constant.PASSWD_NECESSARY, Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                    return false;
-                } else if (verificationCodeText.getText().toString().equals(null) || verificationCodeText.getText().toString().equals("")) {
-                    Toast toast = Toast.makeText(getApplicationContext(), Constant.VERIFICATIONCODE_NECESSARY, Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                    return false;
-                } else {
-                    startActivity(intent);
-                    finish();
-                    return true;
-                }
-            }
-        });
-
         verificationCodeButton = (Button) findViewById(R.id.button_verificationCode);
-        verificationCodeButton.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (usernameText.getText().toString().equals(null) || usernameText.getText().toString().equals("")) {
-                    Toast toast = Toast.makeText(getApplicationContext(), Constant.USERNAME_NECESSARY, Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                    return false;
-                } else if (!verifyUtil.isPhoneFormat(usernameText.getText().toString())) {
-                    Toast toast = Toast.makeText(getApplicationContext(), Constant.PHONE_FORMAT_WRONG, Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                    return false;
-                } else {
-                    new Runnable() {
-                        @Override
-                        public void run() {
-                            VerifyCodeCountDownTimer verifyCodeCountDownTimer = new VerifyCodeCountDownTimer(60000, 1000, verificationCodeButton);
-                            verifyCodeCountDownTimer.start();
-                        }
-                    }.run();
-                }
-                return false;
-            }
-        });
+        signinButton = (Button) findViewById(R.id.button_signinNow);
+        progressDialog = new ProgressDialog(this);
+        hintUtil.setHint(Constant.SIGNUP_PROMPT, 15, usernameText);
+        hintUtil.setHint(Constant.VERIFICATIONCODE_PROMPT, 15, verificationCodeText);
+        hintUtil.setHint(Constant.SIGNIN_PASSWD_PROMPT, 15, passwordText);
+    }
 
-        signinButton = (Button) findViewById(R.id.button_signupNow);
-        signinButton.setOnTouchListener(new View.OnTouchListener() {
+    @Override
+    public void initListeners() {
+        signupButton.setOnClickListener(this);
+        verificationCodeButton.setOnClickListener(this);
+        signinButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button_signup:
+                signupPresenter.signup(usernameText.getText().toString(), verificationCodeText.getText().toString(), passwordText.getText().toString());
+                break;
+            case R.id.button_verificationCode:
+                signupPresenter.getVerificationCode(usernameText.getText().toString());
+                break;
+            case R.id.button_signinNow:
+                startActivity(SigninActivity.class, null);
+                break;
+        }
+    }
+
+    /**
+     * 显示toast提示
+     *
+     * @param msg 提示内容
+     */
+    @Override
+    public void showToast(String msg) {
+        Toast toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+    }
+
+    /**
+     * 更新界面
+     */
+    @Override
+    public void updateView() {
+
+    }
+
+    /**
+     * 显示加载图
+     */
+    @Override
+    public void showLoading() {
+        if (progressDialog != null) {
+            progressDialog = ProgressDialog.show(this, "", "正在加载...", true, false);
+        } else if (progressDialog.isShowing()) {
+            progressDialog.setTitle("");
+            progressDialog.setMessage("正在加载...");
+        }
+        progressDialog.show();
+    }
+
+    /**
+     * 隐藏加载图
+     */
+    @Override
+    public void hideLoading() {
+        if (progressDialog != null && progressDialog.isShowing())
+            progressDialog.dismiss();
+    }
+
+    /**
+     * 显示倒计时
+     */
+    @Override
+    public void showCountDownTimer() {
+        new Runnable() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Intent intent = new Intent(SignupActivity.this, SigninActivity.class);
-                startActivity(intent);
-                return true;
+            public void run() {
+                VerifyCodeCountDownTimer verifyCodeCountDownTimer = new VerifyCodeCountDownTimer(60000, 1000, verificationCodeButton);
+                verifyCodeCountDownTimer.start();
             }
-        });
+        }.run();
     }
 }

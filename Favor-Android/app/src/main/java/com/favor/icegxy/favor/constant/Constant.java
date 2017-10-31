@@ -1,4 +1,4 @@
-package com.favor.icegxy.favor.utils;
+package com.favor.icegxy.favor.constant;
 
 /**
  * Created by icegxy on 2017/10/14.
@@ -21,4 +21,6 @@ public class Constant {
     public static final String VERIFICATIONCODE_NECESSARY = "请输入验证码";
     public static final String PHONE_FORMAT_WRONG = "手机格式输入错误";
     public static final String GET_VERIFICATIONCODE_AGIAN = "重发";
+
+    public static final String BASE_URL = "http://localhost:8080/Favor/";
 }

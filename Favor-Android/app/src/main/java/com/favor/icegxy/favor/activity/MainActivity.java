@@ -1,11 +1,13 @@
 package com.favor.icegxy.favor.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.favor.icegxy.favor.R;
+import com.favor.icegxy.favor.activity.base.BaseActivity;
 
 public class MainActivity extends BaseActivity {
 
@@ -16,6 +18,15 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    @Override
+    public void initViews() {
         mCollectionListView = (ListView) findViewById(R.id.collection_ListView);
         materialRefreshLayout = (MaterialRefreshLayout) findViewById(R.id.refresh_Layout);
         materialRefreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
@@ -34,8 +45,10 @@ public class MainActivity extends BaseActivity {
                 materialRefreshLayout.finishRefreshLoadMore();
             }
         });
+    }
 
-
+    @Override
+    public void initListeners() {
 
     }
 }
