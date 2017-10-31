@@ -78,7 +78,7 @@
         android:textSize="15sp" />
 
     <Button
-        android:id="@+id/button_signupNow"
+        android:id="@+id/button_signinNow"
         android:layout_width="280dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
